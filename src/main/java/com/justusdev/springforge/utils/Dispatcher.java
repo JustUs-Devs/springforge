@@ -1,6 +1,7 @@
-package com.justusdev.springforge.directories;
+package com.justusdev.springforge.utils;
 
-import com.justusdev.springforge.directories.command_module.InitialCommand;
+import com.justusdev.springforge.command_module.InitialCommand;
+import com.justusdev.springforge.files.DefineCommand;
 
 public class Dispatcher {
 
@@ -10,6 +11,9 @@ public class Dispatcher {
 
             case "init" :
                 new InitialCommand().execute(args);
+                break;
+            case "define" :
+                new DefineCommand().execute(args);
                 break;
             case "help -all":
                 System.out.println("All commands:");
