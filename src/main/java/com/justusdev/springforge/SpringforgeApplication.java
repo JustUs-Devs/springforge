@@ -1,7 +1,6 @@
 package com.justusdev.springforge;
 
-import com.justusdev.springforge.directories.Dispatcher;
-import org.springframework.boot.SpringApplication;
+import com.justusdev.springforge.utils.Dispatcher;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

@@ -1,6 +1,5 @@
-package com.justusdev.springforge.directories.command_module;
+package com.justusdev.springforge.command_module;
 
-import com.justusdev.springforge.directories.Command;
 import com.justusdev.springforge.directories.DirectoryCreator;
 
 import java.io.File;

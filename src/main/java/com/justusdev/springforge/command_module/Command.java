@@ -1,4 +1,4 @@
-package com.justusdev.springforge.directories;
+package com.justusdev.springforge.command_module;
 
 public interface Command {
 
