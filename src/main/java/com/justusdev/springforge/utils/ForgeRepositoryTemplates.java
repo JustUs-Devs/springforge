@@ -3,8 +3,7 @@ package com.justusdev.springforge.utils;
 public class ForgeRepositoryTemplates {
 
     public static final String REPOSITORY_TEMPLATE =
-
-                    "import {packageName}.model.entity.{ModelName};\n" +
+            "import {packageName}.model.entity.{ModelName}Entity;\n" +
                     "import org.springframework.data.jpa.repository.JpaRepository;\n" +
                     "import org.springframework.stereotype.Repository;\n" +
                     "\n" +

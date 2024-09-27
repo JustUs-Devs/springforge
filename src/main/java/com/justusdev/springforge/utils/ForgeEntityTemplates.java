@@ -4,10 +4,12 @@ public class ForgeEntityTemplates {
 
     public static final String ENTITY_TEMPLATE =
             "package {packageName}.model.entity;\n\n" +
-                    "import javax.persistence.*;\n" +
-                    "import lombok.*;\n" +
-                    "import org.hibernate.annotations.GenericGenerator;\n" +
                     "import {packageName}.model.dto.{ModelName}Dto;\n" +
+                    "import jakarta.persistence.*;\n" +
+                    "import lombok.AllArgsConstructor;\n" +
+                    "import lombok.Builder;\n" +
+                    "import lombok.Data;\n" +
+                    "import lombok.NoArgsConstructor;\n" +
                     "import java.util.Date;\n\n" +
 
                     "@Entity\n" +
@@ -19,7 +21,7 @@ public class ForgeEntityTemplates {
                     "public class {ModelName}Entity {\n\n" +
 
                     "    @Id\n" +
-                    "    @GeneratedValue(strategy = \"GenerationType.IDENTITY\")\n" +
+                    "    @GeneratedValue(strategy = GenerationType.IDENTITY)\n" +
                     "    private Long id;\n\n" +
 
                     "    @Builder\n" +
@@ -27,5 +29,4 @@ public class ForgeEntityTemplates {
                     "        this.id = dto.getId();\n" +
                     "    }\n" +
                     "}\n";
-
 }

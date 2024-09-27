@@ -19,5 +19,4 @@ public class ForgeDtoTemplates {
                     "        return {ModelName}Entity.builder().dto(this).build();\n" +
                     "    }\n" +
                     "}\n";
-
 }

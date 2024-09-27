@@ -1,6 +1,7 @@
 package com.justusdev.springforge.files;
 
 import com.justusdev.springforge.command_module.Command;
+import com.justusdev.springforge.pom.PomDependencyManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class DefineCommand implements Command {
         File mapperDir = new File(currentDir  + "/mappers");
         File repositoryDir = new File(currentDir  + "/repositories");
         File serviceDir = new File(currentDir  + "/services");
+        String pomPath =  extractPathBeforeSrc(currentDir);
 
         // Ensure the correct construction of the controllers directory path
         if (!controllersDir.exists()) {
@@ -44,6 +46,7 @@ public class DefineCommand implements Command {
 //        System.out.println("Controller directory: " + controllersDir.getAbsolutePath());
 
         DefineCreation defineCreation = new DefineCreation();
+        PomDependencyManager dependencyManager = new PomDependencyManager();
 
         try {
             defineCreation.createController(controllersDir.getAbsolutePath(), modelName, packageName);
@@ -51,8 +54,22 @@ public class DefineCommand implements Command {
             defineCreation.mapperCreation(mapperDir.getAbsolutePath(), modelName, packageName);
             defineCreation.repositoryCreation(repositoryDir.getAbsolutePath(), modelName, packageName);
             defineCreation.serviceCreation(serviceDir.getAbsolutePath(), modelName, packageName);
+            dependencyManager.addDependencies(pomPath);
         } catch (IOException e) {
             System.err.println("Error while executing this command: " + e.getMessage());
         }
+    }
+
+    public static String extractPathBeforeSrc(String fullPath) {
+        // Find the index of "src"
+        int index = fullPath.indexOf("/src");
+
+        // If "src" is found, return the substring before it
+        if (index != -1) {
+            return fullPath.substring(0, index);
+        }
+
+        // Return the original path if "src" is not found
+        return fullPath; // or return null if you prefer
     }
 }

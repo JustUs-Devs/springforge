@@ -3,7 +3,7 @@ package com.justusdev.springforge.utils;
 public class ForgeMapperTemplates {
 
     public static final String MAPPER_TEMPLATE =
-                    "import {packageName}.model.dto.{ModelName}Dto;\n" +
+            "import {packageName}.model.dto.{ModelName}Dto;\n" +
                     "import org.apache.ibatis.annotations.Mapper;\n" +
                     "import org.apache.ibatis.annotations.Param;\n" +
                     "import java.util.List;\n" +
@@ -13,7 +13,6 @@ public class ForgeMapperTemplates {
                     "\n" +
                     "    List<{ModelName}Dto> getAll();\n" +
                     "\n" +
-                    "    {ModelName}Dto getById(@Param(\"{modelNameLower}Id\") Long id);\n" +
+                    "    {ModelName}Dto getById(@Param(\"id\") Long id);\n" +
                     "}\n";
-
 }
