@@ -5,6 +5,7 @@ public class ForgeEntityTemplates {
     public static final String ENTITY_TEMPLATE =
             "package {packageName}.model.entity;\n\n" +
                     "import {packageName}.model.dto.{ModelName}Dto;\n" +
+                    "@EqualsAndHashCode(callSuper = true)\n" +
                     "import jakarta.persistence.*;\n" +
                     "import lombok.AllArgsConstructor;\n" +
                     "import lombok.Builder;\n" +
@@ -18,7 +19,7 @@ public class ForgeEntityTemplates {
                     "@AllArgsConstructor\n" +
                     "@EntityListeners(EntityListeners.class)\n" +
                     "@Table(name = \"{tableName}\")\n" +
-                    "public class {ModelName}Entity {\n\n" +
+                    "public class {ModelName}Entity extends BaseEntity {\n\n" +  // Extend Auditable
 
                     "    @Id\n" +
                     "    @GeneratedValue(strategy = GenerationType.IDENTITY)\n" +
@@ -26,6 +27,7 @@ public class ForgeEntityTemplates {
 
                     "    @Builder\n" +
                     "    public {ModelName}Entity({ModelName}Dto dto) {\n" +
+                    "        super();\n" +  // Call to Auditable constructor if needed
                     "        this.id = dto.getId();\n" +
                     "    }\n" +
                     "}\n";

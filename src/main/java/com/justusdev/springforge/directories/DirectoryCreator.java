@@ -1,6 +1,9 @@
 package com.justusdev.springforge.directories;
 
+import com.justusdev.springforge.utils.ForgeBaseEntityTemplate;
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -56,6 +59,24 @@ public class DirectoryCreator {
                     throw new IOException("Failed to create: " + dir.getAbsolutePath());
                 }
             }
+        }
+
+        // Create the template file in the utils/base directory
+        createTemplateFile(new File(baseDir, "utils/base"));
+    }
+
+    private void createTemplateFile(File baseDir) throws IOException {
+        String templateFileName = "BaseEntity.java";
+        File templateFile = new File(baseDir, templateFileName);
+
+        // Check if the file already exists
+        if (!templateFile.exists()) {
+            try (FileWriter writer = new FileWriter(templateFile)) {
+                writer.write(ForgeBaseEntityTemplate.BASE_ENTITY_TEMPLATE);
+                System.out.println("Created template file: " + templateFile.getAbsolutePath());
+            }
+        } else {
+            System.out.println("Template file already exists: " + templateFile.getAbsolutePath());
         }
     }
 }
