@@ -1,8 +1,8 @@
-package com.justusdev.springforge.utils;
+package com.justusdev.springforge.utils_module;
 
-import com.justusdev.springforge.command_module.InitialCommand;
-import com.justusdev.springforge.db.DatabaseInitializationCommand;
-import com.justusdev.springforge.files.DefineCommand;
+import com.justusdev.springforge.directory_module.SFDirectoryExecutor;
+import com.justusdev.springforge.database_module.SFDatabaseExecutor;
+import com.justusdev.springforge.file_module.SFFileExecutor;
 
 import java.io.IOException;
 
@@ -13,18 +13,17 @@ public class Dispatcher {
         switch (commandName.toLowerCase()) {
 
             case "init":
-                new InitialCommand().execute(args);
+                new SFDirectoryExecutor().execute(args);
                 break;
             case "define":
-                new DefineCommand().execute(args);
+                new SFFileExecutor().execute(args);
                 break;
             case "create":
-                new DatabaseInitializationCommand().execute(args);
+                new SFDatabaseExecutor().execute(args);
                 break;
             case "help -all":
                 System.out.println("All commands:");
                 break;
-
             default:
                 System.err.println("Unknown command: " + commandName);
 

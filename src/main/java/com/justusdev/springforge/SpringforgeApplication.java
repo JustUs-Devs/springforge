@@ -1,6 +1,6 @@
 package com.justusdev.springforge;
 
-import com.justusdev.springforge.utils.Dispatcher;
+import com.justusdev.springforge.utils_module.Dispatcher;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;

@@ -1,13 +1,9 @@
-package com.justusdev.springforge.db;
-
-import org.yaml.snakeyaml.Yaml;
+package com.justusdev.springforge.database_module;
 
 import java.io.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Properties;
 
-public class DatabaseConfigGenerator {
+public class SFDatabase {
 
     public void readProperties(String propertiesPath, String dbType) throws FileNotFoundException {
 

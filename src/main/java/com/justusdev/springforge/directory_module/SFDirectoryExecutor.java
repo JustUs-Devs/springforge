@@ -1,6 +1,6 @@
-package com.justusdev.springforge.command_module;
+package com.justusdev.springforge.directory_module;
 
-import com.justusdev.springforge.directories.DirectoryCreator;
+import com.justusdev.springforge.command_module.Command;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Command to initialize the project directory structure.
  */
-public class InitialCommand implements Command {
+public class SFDirectoryExecutor implements Command {
 
     @Override
     public void execute(String[] args) {
@@ -32,7 +32,7 @@ public class InitialCommand implements Command {
         }
 
 
-        DirectoryCreator forgeInitCreator = new DirectoryCreator();
+        SFDirectory forgeInitCreator = new SFDirectory();
 
         try {
             forgeInitCreator.createDirectories(baseDir);

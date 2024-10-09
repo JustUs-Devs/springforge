@@ -1,4 +1,4 @@
-package com.justusdev.springforge.pom;
+package com.justusdev.springforge.pom_module;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
