@@ -69,6 +69,45 @@ public class PomDependencyManager {
             System.err.println("Error updating pom.xml: " + e.getMessage());
         }
     }
+    private void updateMavenDependenciesWithDatabase(File pomFile) {
+        try {
+            List<String> lines = Files.readAllLines(pomFile.toPath());
+            StringBuilder newPomContent = new StringBuilder();
+            Set<String> existingDependencies = new HashSet<>();
+            boolean dependenciesSectionFound = false;
+
+            for (String line : lines) {
+                newPomContent.append(line).append(System.lineSeparator());
+
+                if (line.contains("<dependencies>")) {
+                    dependenciesSectionFound = true;
+                }
+
+                if (dependenciesSectionFound && line.contains("<dependency>")) {
+                    existingDependencies.add(line.trim());
+                }
+
+                if (dependenciesSectionFound && line.contains("</dependencies>")) {
+                    addNewMavenDependencies(existingDependencies, newPomContent, pomFile);
+                }
+            }
+
+            if (!dependenciesSectionFound) {
+                int index = newPomContent.lastIndexOf("<properties>");
+                newPomContent.insert(index, "\n<dependencies>\n");
+                addNewMavenDependencies(existingDependencies, newPomContent, pomFile);
+                newPomContent.append("</dependencies>\n");
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(pomFile))) {
+                writer.write(newPomContent.toString());
+            }
+
+            System.out.println("Successfully updated pom.xml with necessary dependencies.");
+        } catch (IOException e) {
+            System.err.println("Error updating pom.xml: " + e.getMessage());
+        }
+    }
 
     private void addNewMavenDependencies(Set<String> existingDependencies, StringBuilder newPomContent, File pomFile) throws IOException {
         checkAndAddDependency(pomFile, newPomContent, "org.springframework.boot", "spring-boot-starter-data-jpa");
@@ -76,6 +115,25 @@ public class PomDependencyManager {
         checkAndAddDependency(pomFile, newPomContent, "org.springframework.boot", "spring-boot-starter-web");
         checkAndAddDependency(pomFile, newPomContent, "org.springframework.boot", "spring-boot-starter-actuator");
         checkAndAddDependency(pomFile, newPomContent, "org.mybatis.spring.boot", "mybatis-spring-boot-starter");
+    }
+
+    private void addNewDatabaseMavenDependencies(Set<String> existingDependencies, StringBuilder newPomContent,
+                                                 File pomFile, String dbType) throws IOException {
+
+        switch (dbType.toLowerCase()) {
+            case "mysql":
+                checkAndAddDependency(pomFile, newPomContent, "mysql", "mysql-connector-java");
+                break;
+            case "postgres":
+                checkAndAddDependency(pomFile, newPomContent, "org.postgresql", "postgresql");
+                break;
+            case "oracle":
+                checkAndAddDependency(pomFile, newPomContent, "com.oracle.database.jdbc", "ojdbc8");
+                break;
+            default:
+                System.out.println("Database Type not found.");
+        }
+
     }
 
         private void checkAndAddDependency(File pomFile, StringBuilder newPomContent, String groupId, String artifactId) throws IOException {

@@ -1,11 +1,10 @@
-package com.justusdev.springforge.utils;
+package com.justusdev.springforge.utils.templates;
 
 public class ForgeEntityTemplates {
 
     public static final String ENTITY_TEMPLATE =
             "package {packageName}.model.entity;\n\n" +
                     "import {packageName}.model.dto.{ModelName}Dto;\n" +
-                    "@EqualsAndHashCode(callSuper = true)\n" +
                     "import jakarta.persistence.*;\n" +
                     "import lombok.AllArgsConstructor;\n" +
                     "import lombok.Builder;\n" +
@@ -14,6 +13,7 @@ public class ForgeEntityTemplates {
                     "import java.util.Date;\n\n" +
 
                     "@Entity\n" +
+                    "@EqualsAndHashCode(callSuper = true)\n" +
                     "@Data\n" +
                     "@NoArgsConstructor\n" +
                     "@AllArgsConstructor\n" +

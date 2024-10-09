@@ -1,4 +1,4 @@
-package com.justusdev.springforge.utils;
+package com.justusdev.springforge.utils.templates;
 
 public class ForgeBaseEntityTemplate {
 
@@ -6,6 +6,7 @@ public class ForgeBaseEntityTemplate {
                         "import lombok.Getter;\n" +
                         "import lombok.NoArgsConstructor;\n" +
                         "import lombok.Setter;\n" +
+                        "import lombok.EqualsAndHashCode;\n" +
                         "\n" +
                         "import jakarta.persistence.*;\n" +
                         "import java.time.LocalDateTime;\n" +
@@ -16,11 +17,6 @@ public class ForgeBaseEntityTemplate {
                         "@NoArgsConstructor\n" +
                         "@EqualsAndHashCode\n"+
                         "public abstract class BaseEntity {\n" +
-                        "\n" +
-                        "    @Id\n" +
-                        "    @GeneratedValue(strategy = GenerationType.IDENTITY)\n" +
-                        "    @Column(name = \"id\", nullable = false, updatable = false)\n" +
-                        "    private Long id;\n" +
                         "\n" +
                         "    @Column(name = \"created_at\", nullable = false, updatable = false)\n" +
                         "    private LocalDateTime createdAt;\n" +

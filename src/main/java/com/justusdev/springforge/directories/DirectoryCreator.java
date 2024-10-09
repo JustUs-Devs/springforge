@@ -1,6 +1,6 @@
 package com.justusdev.springforge.directories;
 
-import com.justusdev.springforge.utils.ForgeBaseEntityTemplate;
+import com.justusdev.springforge.utils.templates.ForgeBaseEntityTemplate;
 
 import java.io.File;
 import java.io.FileWriter;
