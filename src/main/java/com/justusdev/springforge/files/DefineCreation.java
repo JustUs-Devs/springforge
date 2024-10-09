@@ -1,13 +1,13 @@
 package com.justusdev.springforge.files;
 
-import com.justusdev.springforge.utils.*;
+import com.justusdev.springforge.utils.templates.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static com.justusdev.springforge.utils.ForgeMapperTemplates.MAPPER_TEMPLATE;
+import static com.justusdev.springforge.utils.templates.ForgeMapperTemplates.MAPPER_TEMPLATE;
 
 public class DefineCreation {
 

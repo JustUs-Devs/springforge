@@ -1,4 +1,4 @@
-package com.justusdev.springforge.utils;
+package com.justusdev.springforge.utils.templates;
 
 public class ForgeMapperTemplates {
 
