@@ -1,4 +1,4 @@
-package com.justusdev.springforge.utils.templates;
+package com.justusdev.springforge.utils_module.templates;
 
 public class ForgeServiceTemplates {
 

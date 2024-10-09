@@ -1,15 +1,15 @@
-package com.justusdev.springforge.files;
+package com.justusdev.springforge.file_module;
 
-import com.justusdev.springforge.utils.templates.*;
+import com.justusdev.springforge.utils_module.templates.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static com.justusdev.springforge.utils.templates.ForgeMapperTemplates.MAPPER_TEMPLATE;
+import static com.justusdev.springforge.utils_module.templates.ForgeMapperTemplates.MAPPER_TEMPLATE;
 
-public class DefineCreation {
+public class SFFile {
 
     public void createController(String baseDirectory, String modelName, String packageName) throws IOException {
         // Ensure correct file path

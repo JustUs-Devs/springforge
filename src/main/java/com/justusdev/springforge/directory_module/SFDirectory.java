@@ -1,6 +1,6 @@
-package com.justusdev.springforge.directories;
+package com.justusdev.springforge.directory_module;
 
-import com.justusdev.springforge.utils.templates.ForgeBaseEntityTemplate;
+import com.justusdev.springforge.utils_module.templates.ForgeBaseEntityTemplate;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Utility class to create a predefined directory structure for a project.
  */
-public class DirectoryCreator {
+public class SFDirectory {
 
     /**
      * Creates the necessary directory structure within the specified base directory.

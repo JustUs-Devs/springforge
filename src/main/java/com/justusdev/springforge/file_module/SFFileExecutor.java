@@ -1,12 +1,12 @@
-package com.justusdev.springforge.files;
+package com.justusdev.springforge.file_module;
 
 import com.justusdev.springforge.command_module.Command;
-import com.justusdev.springforge.pom.PomDependencyManager;
+import com.justusdev.springforge.pom_module.PomDependencyManager;
 
 import java.io.File;
 import java.io.IOException;
 
-public class DefineCommand implements Command {
+public class SFFileExecutor implements Command {
 
     @Override
     public void execute(String[] args) {
@@ -45,7 +45,7 @@ public class DefineCommand implements Command {
 //        System.out.println("Package path: " + packagePath);
 //        System.out.println("Controller directory: " + controllersDir.getAbsolutePath());
 
-        DefineCreation defineCreation = new DefineCreation();
+        SFFile defineCreation = new SFFile();
         PomDependencyManager dependencyManager = new PomDependencyManager();
 
         try {

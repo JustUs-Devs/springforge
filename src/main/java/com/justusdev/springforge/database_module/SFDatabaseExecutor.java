@@ -1,12 +1,11 @@
-package com.justusdev.springforge.db;
+package com.justusdev.springforge.database_module;
 
 import com.justusdev.springforge.command_module.Command;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
 
-public class DatabaseInitializationCommand implements Command {
+public class SFDatabaseExecutor implements Command {
 
 
     @Override
@@ -36,7 +35,7 @@ public class DatabaseInitializationCommand implements Command {
             logError("Error: The command must be run in the src/main/resources directory.");
         } else {
             System.out.println("Command executed in the correct directory.");
-            DatabaseConfigGenerator configGenerator = new DatabaseConfigGenerator();
+            SFDatabase configGenerator = new SFDatabase();
             configGenerator.readProperties(propertiesPath, dbType);
         }
     }
