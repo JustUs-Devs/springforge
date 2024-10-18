@@ -3,9 +3,10 @@ package com.justusdev.springforge.utils_module.templates;
 public class ForgeControllerTemplates {
 
     public static final String CONTROLLER_METHODS =
-                    "import {packageName}.model.dto.{ModelName}Dto;\n" +
+            "import {packageName}.model.dto.{ModelName}Dto;\n" +
                     "import {packageName}.model.entity.{ModelName}Entity;\n" +
                     "import {packageName}.services.{ModelName}Service;\n" +
+                    "import {packageName}.utils.exceptions.GlobalException;\n" +
                     "import org.springframework.http.HttpStatus;\n" +
                     "import org.springframework.http.ResponseEntity;\n" +
                     "import org.springframework.web.bind.annotation.*;\n" +
@@ -23,36 +24,52 @@ public class ForgeControllerTemplates {
                     "    private final {ModelName}Service {modelNameLower}Service;\n" +
                     "\n" +
                     "    @GetMapping\n" +
-                    "    public ResponseEntity<List<{ModelName}Dto>> getAll() {\n" +
-                    "        // Logic to retrieve all records\n" +
-                    "        return ResponseEntity.ok({modelNameLower}Service.getAll()); // Replace with actual logic\n" +
+                    "    public ResponseEntity<List<{ModelName}Dto>> getAll(@RequestParam(defaultValue = \"0\") int page,\n" +
+                    "        @RequestParam(defaultValue = \"10\") int size) {\n" +
+                    "        try {\n" +
+                    "            return ResponseEntity.ok({modelNameLower}Service.getAll(page, size));\n" +
+                    "        } catch (Exception e) {\n" +
+                    "            throw new GlobalException(\"Error retrieving data\", HttpStatus.INTERNAL_SERVER_ERROR, 1001);\n" +
+                    "        }\n" +
                     "    }\n" +
                     "\n" +
                     "    @GetMapping(\"/{id}\")\n" +
                     "    public ResponseEntity<{ModelName}Dto> getById(@PathVariable Long id) {\n" +
-                    "        // Logic to retrieve a record by ID\n" +
-                    "        return ResponseEntity.ok({modelNameLower}Service.getById(id)); // Replace with actual logic\n" +
+                    "        try {\n" +
+                    "            return ResponseEntity.ok({modelNameLower}Service.getById(id));\n" +
+                    "        } catch (Exception e) {\n" +
+                    "            throw new GlobalException(\"Error retrieving record with ID: \" + id, HttpStatus.NOT_FOUND, 1002);\n" +
+                    "        }\n" +
                     "    }\n" +
                     "\n" +
                     "    @PostMapping\n" +
                     "    public ResponseEntity<String> create(@RequestBody {ModelName}Entity model) {\n" +
-                    "        // Logic to create a new record\n" +
-                    "        {modelNameLower}Service.create(model);\n" +
-                    "        return ResponseEntity.ok(\"Created Successfully\");\n" +
+                    "        try {\n" +
+                    "            {modelNameLower}Service.create(model);\n" +
+                    "            return ResponseEntity.ok(\"Created Successfully\");\n" +
+                    "        } catch (Exception e) {\n" +
+                    "            throw new GlobalException(\"Error creating {ModelName}\", HttpStatus.BAD_REQUEST, 1003);\n" +
+                    "        }\n" +
                     "    }\n" +
                     "\n" +
                     "    @PutMapping(\"/{id}\")\n" +
                     "    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody {ModelName}Entity model) {\n" +
-                    "        // Logic to update an existing record\n" +
-                    "        {modelNameLower}Service.update(id, model);\n" +
-                    "        return ResponseEntity.ok(\"Updated Successfully\");\n" +
+                    "        try {\n" +
+                    "            {modelNameLower}Service.update(id, model);\n" +
+                    "            return ResponseEntity.ok(\"Updated Successfully\");\n" +
+                    "        } catch (Exception e) {\n" +
+                    "            throw new GlobalException(\"Error updating {ModelName} with ID: \" + id, HttpStatus.BAD_REQUEST, 1004);\n" +
+                    "        }\n" +
                     "    }\n" +
                     "\n" +
                     "    @DeleteMapping(\"/{id}\")\n" +
                     "    public ResponseEntity<String> delete(@PathVariable Long id) {\n" +
-                    "        // Logic to delete an existing record\n" +
-                    "        {modelNameLower}Service.delete(id);\n" +
-                    "        return ResponseEntity.ok(\"Deleted Successfully\");\n" +
+                    "        try {\n" +
+                    "            {modelNameLower}Service.delete(id);\n" +
+                    "            return ResponseEntity.ok(\"Deleted Successfully\");\n" +
+                    "        } catch (Exception e) {\n" +
+                    "            throw new GlobalException(\"Error deleting {ModelName} with ID: \" + id, HttpStatus.NOT_FOUND, 1005);\n" +
+                    "        }\n" +
                     "    }\n" +
                     "}\n";
 }

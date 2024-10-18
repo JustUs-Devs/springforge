@@ -1,6 +1,9 @@
 package com.justusdev.springforge.directory_module;
 
 import com.justusdev.springforge.utils_module.templates.ForgeBaseEntityTemplate;
+import com.justusdev.springforge.utils_module.templates.exception.ExceptionModelTemplate;
+import com.justusdev.springforge.utils_module.templates.exception.ForgeGlobalExceptionHandlerTemplate;
+import com.justusdev.springforge.utils_module.templates.exception.GlobalExceptionTemplate;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -62,21 +65,76 @@ public class SFDirectory {
         }
 
         // Create the template file in the utils/base directory
-        createTemplateFile(new File(baseDir, "utils/base"));
+        createBaseEntityFile(new File(baseDir, "utils/base"));
+        createSystemGlobalFile(new File(baseDir, "utils/exceptions"));
+
+        System.out.println("This is basic directory" + baseDir);
     }
 
-    private void createTemplateFile(File baseDir) throws IOException {
+    private void createBaseEntityFile(File baseDir) throws IOException {
+
         String templateFileName = "BaseEntity.java";
         File templateFile = new File(baseDir, templateFileName);
+
+        String convertPath = String.valueOf(baseDir).replace("/",".");
+        String replacement = "com."+convertPath;
+
 
         // Check if the file already exists
         if (!templateFile.exists()) {
             try (FileWriter writer = new FileWriter(templateFile)) {
-                writer.write(ForgeBaseEntityTemplate.BASE_ENTITY_TEMPLATE);
+                writer.write(ForgeBaseEntityTemplate.BASE_ENTITY_TEMPLATE
+                        .replace("{packageName}", replacement ));
                 System.out.println("Created template file: " + templateFile.getAbsolutePath());
             }
         } else {
             System.out.println("Template file already exists: " + templateFile.getAbsolutePath());
         }
     }
+
+    private void createSystemGlobalFile(File baseDir) throws IOException {
+        String templateFileName = "GlobalExceptionHandler.java";
+        String templateFileName_2 = "ExceptionModel.java";
+        String templateFileName_3 = "GlobalException.java";
+
+        File templateFile = new File(baseDir, templateFileName);
+        File templateFile_1 = new File(baseDir, templateFileName_2);
+        File templateFile_2 = new File(baseDir, templateFileName_3);
+
+        String convertPath = String.valueOf(baseDir).replace("/",".");
+        String replacement = "com."+convertPath;
+
+
+
+        // Check if any of the files already exist
+        if (!templateFile.exists() && !templateFile_1.exists() && !templateFile_2.exists()) {
+            try (FileWriter writer1 = new FileWriter(templateFile);
+                 FileWriter writer2 = new FileWriter(templateFile_1);
+                 FileWriter writer3 = new FileWriter(templateFile_2)) {
+
+                writer1.write(ForgeGlobalExceptionHandlerTemplate.GLOBAL_EXCEPTION_HANDLER.replace("{packageName}", replacement ));
+                writer2.write(ExceptionModelTemplate.EXCEPTION_MODEL_CLASS.replace("{packageName}", replacement ));
+                writer3.write(GlobalExceptionTemplate.GLOBAL_EXCEPTION_CLASS.replace("{packageName}", replacement ));
+
+                System.out.println("Created template files:");
+                System.out.println(" - " + templateFile.getAbsolutePath());
+                System.out.println(" - " + templateFile_1.getAbsolutePath());
+                System.out.println(" - " + templateFile_2.getAbsolutePath());
+            } catch (IOException e) {
+                System.err.println("Error writing template files: " + e.getMessage());
+            }
+        } else {
+            System.out.println("One or more template files already exist:");
+            if (templateFile.exists()) {
+                System.out.println(" - " + templateFile.getAbsolutePath());
+            }
+            if (templateFile_1.exists()) {
+                System.out.println(" - " + templateFile_1.getAbsolutePath());
+            }
+            if (templateFile_2.exists()) {
+                System.out.println(" - " + templateFile_2.getAbsolutePath());
+            }
+        }
+    }
+
 }

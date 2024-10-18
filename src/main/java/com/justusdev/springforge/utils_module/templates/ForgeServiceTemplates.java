@@ -24,9 +24,10 @@ public class ForgeServiceTemplates {
                     "    @Autowired\n" +
                     "    private final {ModelName}Repository {modelNameLower}Repository;\n" +
                     "\n" +
-                    "    public List<{ModelName}Dto> getAll() {\n" +
+                    "    public List<{ModelName}Dto> getAll(int page, int size) {\n" +
                     "        // Logic to retrieve all {ModelName}\n" +
-                    "        return {modelNameLower}Mapper.getAll();\n" +
+                    "        int pageSet = page * size;\n" +
+                    "        return {modelNameLower}Mapper.getAll(pageSet, size);\n" +
                     "    }\n" +
                     "\n" +
                     "    public {ModelName}Dto getById(Long id) {\n" +
