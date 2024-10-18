@@ -12,10 +12,12 @@ public class ForgeMapperTemplates {
                     "@Mapper\n" +
                     "public interface {ModelName}Mapper {\n" +
                     "\n" +
-                    "    @Select(\"SELECT * FROM your_table\")\n" +
-                    "    List<{ModelName}Dto> getAll();\n" +
+                    "    @Select(\"SELECT * FROM your_table LIMIT #{limit} OFFSET #{offset}\")\n" +
+                    "    List<{ModelName}Dto> getAll(@Param(\"offset\") int offset, @Param(\"limit\") int limit);\n" +
                     "\n" +
                     "    @Select(\"SELECT * FROM your_table WHERE id = #{id}\")\n" +
                     "    {ModelName}Dto getById(@Param(\"id\") Long id);\n" +
                     "}\n";
+
+
 }

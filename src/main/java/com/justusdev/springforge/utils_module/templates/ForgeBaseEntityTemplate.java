@@ -3,6 +3,7 @@ package com.justusdev.springforge.utils_module.templates;
 public class ForgeBaseEntityTemplate {
 
         public static final String BASE_ENTITY_TEMPLATE =
+                "package {packageName};\n\n" +
                         "import lombok.Getter;\n" +
                         "import lombok.NoArgsConstructor;\n" +
                         "import lombok.Setter;\n" +

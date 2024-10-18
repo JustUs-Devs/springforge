@@ -5,11 +5,13 @@ public class ForgeEntityTemplates {
     public static final String ENTITY_TEMPLATE =
             "package {packageName}.model.entity;\n\n" +
                     "import {packageName}.model.dto.{ModelName}Dto;\n" +
+                    "import {packageName}.utils.base.BaseEntity;\n" +
                     "import jakarta.persistence.*;\n" +
                     "import lombok.AllArgsConstructor;\n" +
                     "import lombok.Builder;\n" +
                     "import lombok.Data;\n" +
                     "import lombok.NoArgsConstructor;\n" +
+                    "import lombok.EqualsAndHashCode;\n" +
                     "import java.util.Date;\n\n" +
 
                     "@Entity\n" +
