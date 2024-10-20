@@ -6,7 +6,7 @@ public class ForgeControllerTemplates {
             "import {packageName}.model.dto.{ModelName}Dto;\n" +
                     "import {packageName}.model.entity.{ModelName}Entity;\n" +
                     "import {packageName}.services.{ModelName}Service;\n" +
-                    "import {packageName}.utils.exceptions.GlobalException;\n" +
+                    "import {packageName}.utils.exceptions.GlobalException;\n" + // Added GlobalException import
                     "import org.springframework.http.HttpStatus;\n" +
                     "import org.springframework.http.ResponseEntity;\n" +
                     "import org.springframework.web.bind.annotation.*;\n" +
@@ -37,6 +37,8 @@ public class ForgeControllerTemplates {
                     "    public ResponseEntity<{ModelName}Dto> getById(@PathVariable Long id) {\n" +
                     "        try {\n" +
                     "            return ResponseEntity.ok({modelNameLower}Service.getById(id));\n" +
+                    "        } catch (GlobalException e) {\n" + // Handle GlobalException separately
+                    "            throw e;\n" + // Re-throw GlobalException
                     "        } catch (Exception e) {\n" +
                     "            throw new GlobalException(\"Error retrieving record with ID: \" + id, HttpStatus.NOT_FOUND, 1002);\n" +
                     "        }\n" +
@@ -57,6 +59,8 @@ public class ForgeControllerTemplates {
                     "        try {\n" +
                     "            {modelNameLower}Service.update(id, model);\n" +
                     "            return ResponseEntity.ok(\"Updated Successfully\");\n" +
+                    "        } catch (GlobalException e) {\n" + // Handle GlobalException separately
+                    "            throw e;\n" + // Re-throw GlobalException
                     "        } catch (Exception e) {\n" +
                     "            throw new GlobalException(\"Error updating {ModelName} with ID: \" + id, HttpStatus.BAD_REQUEST, 1004);\n" +
                     "        }\n" +
@@ -67,6 +71,8 @@ public class ForgeControllerTemplates {
                     "        try {\n" +
                     "            {modelNameLower}Service.delete(id);\n" +
                     "            return ResponseEntity.ok(\"Deleted Successfully\");\n" +
+                    "        } catch (GlobalException e) {\n" + // Handle GlobalException separately
+                    "            throw e;\n" + // Re-throw GlobalException
                     "        } catch (Exception e) {\n" +
                     "            throw new GlobalException(\"Error deleting {ModelName} with ID: \" + id, HttpStatus.NOT_FOUND, 1005);\n" +
                     "        }\n" +
