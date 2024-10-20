@@ -30,7 +30,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/springforge.git
+   git clone https://github.com/JustUs-Devs/springforge.git
    cd springforge
 
 ## Documentation
