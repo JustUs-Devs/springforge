@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static com.justusdev.springforge.utils_module.PathUtil.getPackagePathFromWorkingDirectory;
+
 public class SFException {
 
     public void createSystemGlobalFile(File baseDir) throws IOException {
@@ -19,8 +21,9 @@ public class SFException {
         File templateFile_1 = new File(baseDir, templateFileName_2);
         File templateFile_2 = new File(baseDir, templateFileName_3);
 
+        String packagePath = getPackagePathFromWorkingDirectory();
         String convertPath = String.valueOf(baseDir).replace("/",".");
-        String replacement = "com."+convertPath;
+        String replacement = packagePath+"."+convertPath;
 
 
 
