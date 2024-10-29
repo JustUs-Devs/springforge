@@ -37,4 +37,9 @@
 
 [For detailed documentation, please refer to SpringForge Documentation](https://docs.google.com/document/d/1aibfqrNifsfuMmaEztPX4ufLWvQ46e2QE3dXjrU0QB0/edit?usp=sharing)
 
+## Download SpringForge Script
+
+You can download the SpringForge script by clicking the link below:
+
+- [Download springforge.sh](https://github.com/JustUs-Devs/springforge/blob/main/springforge.sh)
 
