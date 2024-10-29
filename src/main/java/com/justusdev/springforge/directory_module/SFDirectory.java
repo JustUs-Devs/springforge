@@ -9,6 +9,10 @@ import com.justusdev.springforge.utils_module.templates.exception.GlobalExceptio
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static com.justusdev.springforge.utils_module.PathUtil.getPackagePathFromWorkingDirectory;
 
 /**
  * Utility class to create a predefined directory structure for a project.
@@ -80,8 +84,10 @@ public class SFDirectory {
         String templateFileName = "BaseEntity.java";
         File templateFile = new File(baseDir, templateFileName);
 
+        String packagePath = getPackagePathFromWorkingDirectory();
+
         String convertPath = String.valueOf(baseDir).replace("/",".");
-        String replacement = "com."+convertPath;
+        String replacement = packagePath+"."+convertPath;
 
 
         // Check if the file already exists
@@ -95,6 +101,8 @@ public class SFDirectory {
             System.out.println("Template file already exists: " + templateFile.getAbsolutePath());
         }
     }
+
+
 
 
 }
