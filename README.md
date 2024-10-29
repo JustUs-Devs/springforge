@@ -26,9 +26,9 @@
 
 ---
 
-## How to use SpringForge Library
+## How to use SpringForge Library in your project
 
-You can view the SpringForge library by clicking the link below:
+You can view the SpringForge library instruction by clicking the link below:
 
 - [View springforge latest release ](https://github.com/JustUs-Devs/springforge/releases/tag/v0.1.1)
 
